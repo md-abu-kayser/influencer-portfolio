@@ -1,8 +1,5 @@
-//
-
 import admin from "firebase-admin";
 
-// Check if the environment variable exists and is valid JSON
 let serviceAccount;
 try {
   if (!process.env.FIREBASE_SERVICE_ACCOUNT_KEY) {
@@ -14,9 +11,7 @@ try {
   serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
 } catch (error) {
   console.error("Error parsing Firebase service account:", error);
-  // Fallback to using a file if environment variable fails
   try {
-    // This is for development - create a serviceAccountKey.json file in your backend folder
     serviceAccount = require("../../serviceAccountKey.json");
   } catch (fileError) {
     console.error("Also failed to load service account from file:", fileError);
@@ -26,7 +21,6 @@ try {
   }
 }
 
-// Initialize Firebase Admin
 try {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),

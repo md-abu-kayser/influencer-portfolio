@@ -128,7 +128,6 @@ export const addReview = async (req: Request, res: Response) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    // Check if user already reviewed this product
     const alreadyReviewed = product.reviews.find(
       (review: any) => review.user.toString() === (req as any).user.uid
     );

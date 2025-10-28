@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Influencer Gear | Professional Equipment for Content Creators</title>
+    <title>Influencer Pro | Professional Equipment for Content Creators</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -81,7 +81,7 @@
     </style>
   </head>
   <body class="font-inter bg-white text-gray-800 antialiased">
-    <!-- Header/Navigation -->
+    <!-- Header and Navigation -->
     <header class="sticky top-0 z-50 bg-white shadow-sm">
       <div class="container mx-auto px-4">
         <nav class="flex items-center justify-between py-5">
@@ -528,7 +528,7 @@
       </div>
     </section>
 
-    <!-- Shopping Cart Panel -->
+    <!-- Shopping Cart -->
     <div
       id="cartPanel"
       class="cart-panel fixed top-0 right-0 h-full w-full md:w-96 bg-white shadow-2xl z-50 overflow-y-auto"
@@ -542,7 +542,6 @@
         </div>
 
         <div id="cartItems" class="mb-6">
-          <!-- Cart items will be dynamically inserted here -->
           <div class="text-center py-8 text-gray-500" id="emptyCart">
             <i class="fa-solid fa-cart-shopping text-4xl mb-4 opacity-30"></i>
             <p>Your cart is empty</p>
@@ -674,7 +673,7 @@
               </li>
               <li class="flex items-center">
                 <i class="fa-solid fa-envelope mr-2"></i>
-                <span>support@influencergear.com</span>
+                <span>abu.kayser.official@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -684,7 +683,7 @@
           class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
         >
           <p class="text-gray-400 mb-4 md:mb-0">
-            Copyright &copy; 2023 Influencer Gear. All rights reserved.
+            Copyright &copy; 2025 Influencer Gear. All rights reserved.
           </p>
           <div class="flex space-x-4">
             <a
@@ -722,7 +721,7 @@
       </div>
     </footer>
 
-    <!-- Back to Top Button -->
+    <!-- Button -->
     <button
       id="backToTop"
       class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-white shadow-lg flex items-center justify-center opacity-0 invisible transition-all"
@@ -731,7 +730,6 @@
     </button>
 
     <script>
-      // Cart functionality
       let cart = [];
       const cartPanel = document.getElementById('cartPanel');
       const cartBackdrop = document.getElementById('cartBackdrop');
@@ -745,17 +743,14 @@
       const cartTotal = document.getElementById('cartTotal');
       const checkoutButton = document.getElementById('checkoutButton');
 
-      // Add to cart buttons
       const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
-      // Open cart
       cartButton.addEventListener('click', () => {
         cartPanel.classList.add('open');
         cartBackdrop.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
       });
 
-      // Close cart
       closeCart.addEventListener('click', closeCartPanel);
       cartBackdrop.addEventListener('click', closeCartPanel);
 
@@ -765,7 +760,6 @@
         document.body.style.overflow = 'auto';
       }
 
-      // Add to cart functionality
       addToCartButtons.forEach((button) => {
         button.addEventListener('click', () => {
           const id = button.getAttribute('data-id');
@@ -773,7 +767,6 @@
           const price = parseFloat(button.getAttribute('data-price'));
           const image = button.getAttribute('data-image');
 
-          // Check if product already in cart
           const existingItem = cart.find((item) => item.id === id);
 
           if (existingItem) {
@@ -790,7 +783,6 @@
 
           updateCart();
 
-          // Show confirmation
           button.innerHTML =
             'Added to Cart <i class="fa-solid fa-check ml-2"></i>';
           button.classList.remove('bg-primary');
@@ -802,7 +794,6 @@
             button.classList.add('bg-primary');
           }, 2000);
 
-          // Open cart if not already open
           if (!cartPanel.classList.contains('open')) {
             cartPanel.classList.add('open');
             cartBackdrop.classList.remove('hidden');
@@ -811,16 +802,13 @@
         });
       });
 
-      // Update cart display
       function updateCart() {
-        // Update cart count
         const totalItems = cart.reduce(
           (total, item) => total + item.quantity,
           0
         );
         cartCount.textContent = totalItems;
 
-        // Clear cart items
         cartItems.innerHTML = '';
 
         if (cart.length === 0) {
@@ -830,7 +818,6 @@
           emptyCart.remove();
           checkoutButton.disabled = false;
 
-          // Add items to cart
           cart.forEach((item) => {
             const cartItem = document.createElement('div');
             cartItem.className =
@@ -872,7 +859,6 @@
             cartItems.appendChild(cartItem);
           });
 
-          // Add event listeners to quantity buttons
           document.querySelectorAll('.increase-quantity').forEach((button) => {
             button.addEventListener('click', () => {
               const id = button.getAttribute('data-id');
@@ -905,7 +891,6 @@
           });
         }
 
-        // Update totals
         const subtotal = cart.reduce(
           (total, item) => total + item.price * item.quantity,
           0
@@ -918,7 +903,6 @@
         cartTotal.textContent = `$${total.toFixed(2)}`;
       }
 
-      // Checkout button
       checkoutButton.addEventListener('click', () => {
         alert(
           'Thank you for your purchase! This is a demo site, so no real transaction occurred.'
@@ -928,7 +912,6 @@
         closeCartPanel();
       });
 
-      // Back to top button functionality
       const backToTopButton = document.getElementById('backToTop');
 
       window.addEventListener('scroll', () => {
@@ -948,7 +931,6 @@
         });
       });
 
-      // Initialize cart
       updateCart();
     </script>
   </body>
